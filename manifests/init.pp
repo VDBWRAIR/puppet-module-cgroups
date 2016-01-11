@@ -86,5 +86,11 @@ class cgroups (
     name    => $service_name,
     start   => "/sbin/service ${service_name} restart",
     require => Package[$package_name_real],
+    notify  => Service['cgred']
+  }
+
+  service { 'cgred':
+    ensure => running,
+    enable => true,
   }
 }
